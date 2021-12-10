@@ -7,15 +7,15 @@ import {
   Typography,
   Menu,
   Container,
-  Avatar,
   Button,
-  Tooltip,
   MenuItem,
   ThemeProvider,
   createTheme,
 } from "@mui/material";
 import MenuRoundedIcon from "@mui/icons-material/MenuRounded";
 import Logo from "../assets/logo-grey.png";
+import { Link } from "react-router-dom";
+import "./Style.css";
 
 const theme = createTheme({
   palette: {
@@ -24,7 +24,11 @@ const theme = createTheme({
   },
 });
 
-const settings = ["Login", "Signup", "Logout"];
+const settings = [
+  { name: "Log In", path: "/login" },
+  { name: "Sign Up", path: "/signup" },
+  { name: "Logout", path: "/logout" },
+];
 
 const Navbar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -51,15 +55,18 @@ const Navbar = () => {
               }}
               alt="Your logo."
               src={Logo}
+              className="logo"
             />
             <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
               {settings.map((page) => (
                 <Button
-                  key={page}
+                  key={page.name}
                   onClick={handleCloseNavMenu}
-                  sx={{ my: 2, color: "white", display: "block" }}
+                  sx={{ my: 2, color: "#6e6e6e", display: "block" }}
                 >
-                  {page}
+                  <Link to={page.path} className="link">
+                    {page.name}
+                  </Link>
                 </Button>
               ))}
             </Box>
@@ -93,8 +100,12 @@ const Navbar = () => {
                 }}
               >
                 {settings.map((page) => (
-                  <MenuItem key={page} onClick={handleCloseNavMenu}>
-                    <Typography textAlign="center">{page}</Typography>
+                  <MenuItem key={page.name} onClick={handleCloseNavMenu}>
+                    <Typography textAlign="center">
+                      <Link to={page.path} className="link">
+                        {page.name}
+                      </Link>
+                    </Typography>
                   </MenuItem>
                 ))}
               </Menu>

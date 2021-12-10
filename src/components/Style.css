@@ -1,0 +1,17 @@
+.link {
+  color: #6e6e6e;
+  text-decoration: none;
+}
+
+@media (min-width: 900px) {
+  .logo.MuiBox-root {
+    display: block;
+  }
+  .css-1t6c9ts {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    justify-content: flex-end;
+  }
+}
