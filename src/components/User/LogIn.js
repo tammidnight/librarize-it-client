@@ -18,6 +18,9 @@ const theme = createTheme({
     background: { default: "#c3cfd9" },
     primary: { main: "#1bae9f", contrastText: "white" },
   },
+  typography: {
+    fontFamily: "M PLUS Rounded 1c, sans-serif",
+  },
 });
 
 function LogIn(props) {

@@ -9,7 +9,7 @@ const LoadingScreen = () => {
   useEffect(() => {
     const getData = async () => {
       let response = await axios.get(
-        "https://assets1.lottiefiles.com/packages/lf20_56d9bgat.json"
+        "https://assets6.lottiefiles.com/packages/lf20_irdkrpwy.json"
       );
       setJson(response.data);
     };
@@ -26,7 +26,7 @@ const LoadingScreen = () => {
   };
   return (
     <div className="loading">
-      <Lottie options={defaultOptions} height={"100%"} width={"100%"} />
+      <Lottie options={defaultOptions} height={"50vw"} width={"50vw"} />
       <p>
         Reading through
         <br />
