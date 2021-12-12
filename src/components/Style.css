@@ -42,6 +42,10 @@
   margin-top: 5rem;
 }
 
+.bottomNavImg {
+  width: 2rem;
+}
+
 @media (min-width: 600px) {
   .landingPage {
     width: 50%;

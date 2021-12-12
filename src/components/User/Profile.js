@@ -13,6 +13,7 @@ import "./User.css";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { API_URL } from "../../config";
+import FooterNavigation from "../FooterNavigation";
 
 const Root = styled("div")(
   ({ theme }) => `
@@ -359,13 +360,19 @@ function Profile() {
         ) : null}
       </Root>
 
-      <Link to="/add-library">
+      <Link to="/settings">
+        <img src="/images/pencil.png" alt="settings" className="settings"></img>
+      </Link>
+
+      <Link to="/create-library">
         <img
           src="/images/add-library.png"
-          alt="add-library"
+          alt="create-library"
           className="addlibrary"
         ></img>
       </Link>
+
+      <FooterNavigation isProfile={isProfile} />
     </div>
   );
 }

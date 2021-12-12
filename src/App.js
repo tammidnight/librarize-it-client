@@ -12,6 +12,8 @@ import { FetchingUserContext } from "./context/fetchingUser.context";
 import LandingPage from "./components/LandingPage";
 import "./App.css";
 import Profile from "./components/User/Profile";
+import EditProfile from "./components/User/EditProfile";
+import CreateLibrary from "./components/Library/CreateLibrary";
 
 function App() {
   const { user, setUser } = useContext(UserContext);
@@ -34,12 +36,6 @@ function App() {
 
     getData();
   }, []);
-
-  useEffect(() => {
-    if (user) {
-      navigate(`/profile/${user._id}`);
-    }
-  }, [user]);
 
   const handleSignUp = async (event) => {
     event.preventDefault();
@@ -100,6 +96,8 @@ function App() {
         <Route path="/signup" element={<SignUp onSignUp={handleSignUp} />} />
         <Route path="/login" element={<LogIn onLogIn={handleLogIn} />} />
         <Route path="/profile/:id" element={<Profile />} />
+        <Route path="/settings" element={<EditProfile />} />
+        <Route path="/create-library" element={<CreateLibrary />} />
       </Routes>
     </div>
   );

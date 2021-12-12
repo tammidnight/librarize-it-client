@@ -19,9 +19,16 @@
 
 .addlibrary {
   position: absolute;
-  bottom: 3rem;
+  bottom: 5rem;
   right: 2rem;
   width: 75px;
+}
+
+.settings {
+  position: absolute;
+  bottom: 5rem;
+  left: 2rem;
+  width: 50px;
 }
 
 @media (min-width: 400px) {
@@ -33,11 +40,26 @@
 
 @media (min-width: 900px) {
   .addlibrary {
-    bottom: 3rem;
     right: 15%;
+  }
+  .settings {
+    left: 15%;
   }
   .details,
   .favoritesInput {
     width: 30%;
+  }
+}
+
+@media (min-width: 1400px) {
+  .addlibrary {
+    right: 30%;
+  }
+  .settings {
+    left: 30%;
+  }
+  .details,
+  .favoritesInput {
+    width: 20%;
   }
 }
