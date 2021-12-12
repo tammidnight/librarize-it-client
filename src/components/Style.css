@@ -50,6 +50,9 @@
   .landingPage {
     width: 50%;
   }
+  .logo.MuiBox-root {
+    display: block;
+  }
   .landingLogo {
     width: 50%;
   }

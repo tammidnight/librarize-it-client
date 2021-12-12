@@ -28,7 +28,7 @@ const theme = createTheme({
   },
 });
 
-const settings = [
+let settings = [
   { name: "Home", path: "/" },
   { name: "Log In", path: "/login" },
   { name: "Sign Up", path: "/signup" },
@@ -77,16 +77,33 @@ function Navbar(props) {
             </Box>
             <Box sx={{ display: { xs: "flex", md: "none" } }}>
               {user ? (
-                <IconButton
-                  size="large"
-                  aria-label="account of current user"
-                  aria-controls="menu-appbar"
-                  aria-haspopup="true"
-                  onClick={props.onLogOut}
-                  color="inherit"
-                >
-                  <LogoutRoundedIcon />
-                </IconButton>
+                <>
+                  <IconButton
+                    size="large"
+                    onClick={props.onLogOut}
+                    color="inherit"
+                  >
+                    <LogoutRoundedIcon />
+                  </IconButton>
+                  <Menu
+                    id="menu-appbar"
+                    anchorEl={anchorElNav}
+                    anchorOrigin={{
+                      vertical: "bottom",
+                      horizontal: "left",
+                    }}
+                    keepMounted
+                    transformOrigin={{
+                      vertical: "top",
+                      horizontal: "left",
+                    }}
+                    open={Boolean(anchorElNav)}
+                    onClose={handleCloseNavMenu}
+                    sx={{
+                      display: { xs: "block", md: "none" },
+                    }}
+                  ></Menu>
+                </>
               ) : (
                 <>
                   <IconButton

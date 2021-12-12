@@ -1,11 +1,36 @@
 import { BottomNavigation, BottomNavigationAction } from "@mui/material";
-import React, { useContext } from "react";
+import axios from "axios";
+import React, { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { FetchingUserContext } from "../context/fetchingUser.context";
 import { UserContext } from "../context/user.context";
+import LoadingScreen from "./Loading/LoadingScreen";
 import "./Style.css";
+import { API_URL } from "../config";
 
 function FooterNavigation() {
-  const { user } = useContext(UserContext);
+  const { user, setUser } = useContext(UserContext);
+  const { fetchingUser, setFetchingUser } = useContext(FetchingUserContext);
+
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        let userResponse = await axios.get(`${API_URL}/user`, {
+          withCredentials: true,
+        });
+        setFetchingUser(false);
+        setUser(userResponse.data);
+      } catch (err) {
+        setFetchingUser(false);
+      }
+    };
+
+    getData();
+  }, []);
+
+  if (fetchingUser || !user) {
+    return <LoadingScreen />;
+  }
 
   return (
     <BottomNavigation
