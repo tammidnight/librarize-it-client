@@ -4,7 +4,7 @@ import { useAutocomplete } from "@mui/base/AutocompleteUnstyled";
 import CheckIcon from "@mui/icons-material/Check";
 import CloseIcon from "@mui/icons-material/Close";
 import { styled } from "@mui/material/styles";
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { Navigate } from "react-router";
 import { FetchingUserContext } from "../../context/fetchingUser.context";
 import { UserContext } from "../../context/user.context";
@@ -168,13 +168,28 @@ const bookGenres = [
 
 function Profile() {
   const { user, setUser } = useContext(UserContext);
-  const isProfile = true;
   let username = null;
   let createdAt = null;
   let libraries = null;
   let favorites = null;
   let image = null;
-  const { fetchingUser } = useContext(FetchingUserContext);
+  const { fetchingUser, setFetchingUser } = useContext(FetchingUserContext);
+
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        let userResponse = await axios.get(`${API_URL}/user`, {
+          withCredentials: true,
+        });
+        setFetchingUser(false);
+        setUser(userResponse.data);
+      } catch (err) {
+        setFetchingUser(false);
+      }
+    };
+
+    getData();
+  }, []);
 
   const formateDate = (date) => {
     const month = ("0" + (date.getMonth() + 1)).slice(-2);
@@ -295,11 +310,11 @@ function Profile() {
     setUser(userResponse.data);
   };
 
+  const userSince = formateDate(new Date(createdAt));
+
   if (!user) {
     return <Navigate to="/" />;
   }
-
-  const userSince = formateDate(new Date(createdAt));
 
   if (fetchingUser) {
     return <LoadingScreen />;
@@ -343,20 +358,22 @@ function Profile() {
           </InputWrapper>
         </div>
         {groupedOptions.length > 0 ? (
-          <Listbox {...getListboxProps()}>
-            {groupedOptions.map((option, index) => (
-              <li {...getOptionProps({ option, index })}>
-                <span
-                  onClick={(event) => {
-                    getFavorite(event);
-                  }}
-                >
-                  {option}
-                </span>
-                <CheckIcon fontSize="small" />
-              </li>
-            ))}
-          </Listbox>
+          <div className="favoritesInput">
+            <Listbox {...getListboxProps()}>
+              {groupedOptions.map((option, index) => (
+                <li {...getOptionProps({ option, index })}>
+                  <span
+                    onClick={(event) => {
+                      getFavorite(event);
+                    }}
+                  >
+                    {option}
+                  </span>
+                  <CheckIcon fontSize="small" />
+                </li>
+              ))}
+            </Listbox>
+          </div>
         ) : null}
       </Root>
 
@@ -372,7 +389,7 @@ function Profile() {
         ></img>
       </Link>
 
-      <FooterNavigation isProfile={isProfile} />
+      <FooterNavigation />
     </div>
   );
 }
