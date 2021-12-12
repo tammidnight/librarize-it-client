@@ -1,5 +1,6 @@
 import { createTheme, Button, ThemeProvider } from "@mui/material";
 import React from "react";
+import { Link } from "react-router-dom";
 import "./Style.css";
 
 const theme = createTheme({
@@ -33,7 +34,9 @@ function LandingPage() {
               librarize?
             </p>
             <Button variant="contained" sx={{ width: "100%" }}>
-              Sign Up
+              <Link to="/signup" className="landingPageLink">
+                Sign Up
+              </Link>
             </Button>
           </div>
           <div className="langindPageBtnDiv">
@@ -42,7 +45,9 @@ function LandingPage() {
               book lover?
             </p>
             <Button variant="contained" sx={{ width: "100%" }}>
-              Log In
+              <Link to="/login" className="landingPageLink">
+                Log In
+              </Link>
             </Button>
           </div>
         </div>
