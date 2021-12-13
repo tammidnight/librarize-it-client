@@ -9,7 +9,6 @@ import {
   Button,
   createTheme,
   Backdrop,
-  CircularProgress,
 } from "@mui/material";
 import React, { useContext, useState } from "react";
 import { ErrorContext } from "../../context/error.context";
@@ -103,7 +102,6 @@ function EditProfile() {
   };
 
   const handleDelete = async () => {
-    console.log("test");
     await axios.delete(`${API_URL}/profile/${user._id}/delete`, {
       withCredentials: true,
     });
