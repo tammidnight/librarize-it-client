@@ -96,7 +96,7 @@ function EditLibrary() {
             }}
           >
             <Typography component="h1" variant="h5" align="center">
-              Create your own library
+              Edit your own library
             </Typography>
             <img src="/images/library.png" alt="" className="library" />
             <Box

@@ -11,6 +11,13 @@
   width: 75px;
 }
 
+.addBook {
+  position: absolute;
+  bottom: 5rem;
+  right: 2rem;
+  width: 50px;
+}
+
 .header {
   text-align: center;
 }
@@ -43,18 +50,46 @@
   align-items: center;
 }
 
+.libraryHeader,
+.libraryDetails {
+  display: flex;
+}
+
+.libraryHeader {
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 2rem;
+}
+
+.libraryDetails {
+  margin-left: 1rem;
+  align-items: center;
+}
+
+.books {
+  margin-bottom: 5rem;
+}
+
+.bookLink {
+  font-size: 12px;
+  padding: 0;
+}
+
 /*  @media (min-width: 400px) {
    
   } */
 
 @media (min-width: 900px) {
-  .addlibrary {
+  .addlibrary,
+  .addBook {
     right: 15%;
   }
 }
 
 @media (min-width: 1400px) {
-  .addlibrary {
+  .addlibrary,
+  .addBook {
     right: 30%;
   }
 }

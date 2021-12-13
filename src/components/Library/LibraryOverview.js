@@ -59,17 +59,18 @@ function LibraryOverview() {
           {library.map((elem) => {
             return (
               <Card
-                sx={{ width: 75, backgroundColor: "#dfe6ed" }}
+                sx={{ width: 100, backgroundColor: "#dfe6ed" }}
                 className="card"
+                key={elem._id}
               >
                 <CardMedia
                   component="img"
-                  height="50"
+                  height="75"
                   image="/images/library.png"
                   alt="library"
                 />
                 <CardContent className="cardContent">
-                  <Link to="/settings" className="cardLink">
+                  <Link to={`/library/${elem._id}`} className="cardLink">
                     <Typography>{elem.title}</Typography>
                   </Link>
                   <Link to={`/library/${elem._id}/edit`}>
