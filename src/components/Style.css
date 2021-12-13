@@ -53,6 +53,12 @@
   .logo.MuiBox-root {
     display: block;
   }
+  .logout.MuiBox-root {
+    display: block;
+  }
+  .MuiBox-root.css-1t6c9ts {
+    display: none;
+  }
   .landingLogo {
     width: 50%;
   }
@@ -64,6 +70,12 @@
   }
   .logo.MuiBox-root {
     display: block;
+  }
+  .logout.MuiBox-root {
+    display: block;
+  }
+  .MuiBox-root.css-1t6c9ts {
+    display: none;
   }
   .css-1t6c9ts {
     display: -webkit-box;

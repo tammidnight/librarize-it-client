@@ -75,35 +75,18 @@ function Navbar(props) {
                 </Button>
               ))}
             </Box>
-            <Box sx={{ display: { xs: "flex", md: "none" } }}>
+            <Box
+              sx={{ display: { xs: "flex", md: "none" } }}
+              className="logout"
+            >
               {user ? (
-                <>
-                  <IconButton
-                    size="large"
-                    onClick={props.onLogOut}
-                    color="inherit"
-                  >
-                    <LogoutRoundedIcon />
-                  </IconButton>
-                  <Menu
-                    id="menu-appbar"
-                    anchorEl={anchorElNav}
-                    anchorOrigin={{
-                      vertical: "bottom",
-                      horizontal: "left",
-                    }}
-                    keepMounted
-                    transformOrigin={{
-                      vertical: "top",
-                      horizontal: "left",
-                    }}
-                    open={Boolean(anchorElNav)}
-                    onClose={handleCloseNavMenu}
-                    sx={{
-                      display: { xs: "block", md: "none" },
-                    }}
-                  ></Menu>
-                </>
+                <IconButton
+                  size="large"
+                  onClick={props.onLogOut}
+                  color="inherit"
+                >
+                  <LogoutRoundedIcon />
+                </IconButton>
               ) : (
                 <>
                   <IconButton
