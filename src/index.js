@@ -6,6 +6,7 @@ import { BrowserRouter } from "react-router-dom";
 import { UserWrapper } from "./context/user.context";
 import { ErrorWrapper } from "./context/error.context";
 import { FetchingUserWrapper } from "./context/fetchingUser.context";
+import { LibraryWrapper } from "./context/library.context";
 
 ReactDOM.render(
   <React.StrictMode>
@@ -13,7 +14,9 @@ ReactDOM.render(
       <UserWrapper>
         <FetchingUserWrapper>
           <ErrorWrapper>
-            <App />
+            <LibraryWrapper>
+              <App />
+            </LibraryWrapper>
           </ErrorWrapper>
         </FetchingUserWrapper>
       </UserWrapper>

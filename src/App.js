@@ -14,6 +14,9 @@ import "./App.css";
 import Profile from "./components/User/Profile";
 import EditProfile from "./components/User/EditProfile";
 import CreateLibrary from "./components/Library/CreateLibrary";
+import LibraryDetail from "./components/Library/LibraryDetail";
+import LibraryOverview from "./components/Library/LibraryOverview";
+import EditLibrary from "./components/Library/EditLibrary";
 
 function App() {
   const { user, setUser } = useContext(UserContext);
@@ -98,6 +101,12 @@ function App() {
         <Route path="/profile/:id" element={<Profile />} />
         <Route path="/settings" element={<EditProfile />} />
         <Route path="/create-library" element={<CreateLibrary />} />
+        <Route
+          path="/profile/:id/library-overview"
+          element={<LibraryOverview />}
+        />
+        <Route path="/library/:id" element={<LibraryDetail />} />
+        <Route path="/library/:id/edit" element={<EditLibrary />} />
       </Routes>
     </div>
   );
