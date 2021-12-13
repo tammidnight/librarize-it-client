@@ -19,9 +19,8 @@ import LoadingScreen from "../Loading/LoadingScreen";
 import "./Library.css";
 import { API_URL } from "../../config";
 import axios from "axios";
-import { useNavigate } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import { ErrorContext } from "../../context/error.context";
-import { LibraryContext } from "../../context/library.context";
 
 const theme = createTheme({
   palette: {
@@ -37,8 +36,8 @@ function EditLibrary() {
   const { user, setUser } = useContext(UserContext);
   const { fetchingUser } = useContext(FetchingUserContext);
   const { error, setError } = useContext(ErrorContext);
-  const { library, setLibrary } = useContext(LibraryContext);
   const navigate = useNavigate();
+  const { id } = useParams();
 
   const [open, setOpen] = useState(false);
   const handleClose = () => {
@@ -51,15 +50,15 @@ function EditLibrary() {
   const handleEditLibrary = async (event) => {
     event.preventDefault();
     try {
-      let newLibrary = {
+      let updatedLibrary = {
         title: event.target.title.value,
         description: event.target.description.value,
         publicLibrary: event.target.publicLibrary.checked,
       };
 
       let response = await axios.patch(
-        `${API_URL}/library/${library._id}`,
-        newLibrary,
+        `${API_URL}/library/${id}`,
+        updatedLibrary,
         {
           withCredentials: true,
         }
@@ -72,10 +71,9 @@ function EditLibrary() {
   };
 
   const handleDelete = async () => {
-    await axios.delete(`${API_URL}/library/${library._id}/delete`, {
+    await axios.delete(`${API_URL}/library/${id}/delete`, {
       withCredentials: true,
     });
-    setUser(null);
     navigate(`/profile/${user._id}/library-overview`);
   };
 

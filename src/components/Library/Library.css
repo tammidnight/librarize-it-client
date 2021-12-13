@@ -3,3 +3,58 @@
   margin-top: 2rem;
   margin-bottom: 2rem;
 }
+
+.addlibrary {
+  position: absolute;
+  bottom: 5rem;
+  right: 2rem;
+  width: 75px;
+}
+
+.header {
+  text-align: center;
+}
+
+.pencil {
+  width: 20px;
+}
+
+.cardLink {
+  color: #1bae9f;
+}
+
+.cardDiv {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 1rem;
+  margin-bottom: 5rem;
+}
+
+.card {
+  margin: 0.5rem;
+}
+
+.MuiCardContent-root.cardContent,
+.MuiCardContent-root.cardContent:last-child,
+.MuiCardActions-root.cardContent {
+  padding: 0;
+  text-align: center;
+  align-items: center;
+}
+
+/*  @media (min-width: 400px) {
+   
+  } */
+
+@media (min-width: 900px) {
+  .addlibrary {
+    right: 15%;
+  }
+}
+
+@media (min-width: 1400px) {
+  .addlibrary {
+    right: 30%;
+  }
+}
