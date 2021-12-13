@@ -37,6 +37,13 @@ let settings = [
 function Navbar(props) {
   const { user } = React.useContext(UserContext);
   const [anchorElNav, setAnchorElNav] = React.useState(null);
+  let hidden = "";
+  let logout = "";
+
+  if (user) {
+    hidden = "hidden";
+    logout = "logout";
+  }
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -62,7 +69,10 @@ function Navbar(props) {
               src="/images/logo-grey.png"
               className="logo"
             />
-            <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+            <Box
+              sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}
+              className={hidden}
+            >
               {settings.map((page) => (
                 <Button
                   key={page.name}
@@ -77,7 +87,7 @@ function Navbar(props) {
             </Box>
             <Box
               sx={{ display: { xs: "flex", md: "none" } }}
-              className="logout"
+              className={logout}
             >
               {user ? (
                 <IconButton
