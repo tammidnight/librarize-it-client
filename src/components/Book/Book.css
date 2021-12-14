@@ -1,0 +1,32 @@
+.cover {
+  display: block;
+  width: 30%;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.bookDetail {
+  margin: 2rem 2rem 5rem 2rem;
+}
+
+.MuiRating-root.booksRating {
+  color: #1bae9f;
+}
+
+.MuiPaper-root.paper {
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+  padding: 0.5rem;
+}
+
+@media (min-width: 900px) {
+  .cover {
+    width: 20%;
+  }
+}
+
+@media (min-width: 1400px) {
+  .cover {
+    width: 15%;
+  }
+}
