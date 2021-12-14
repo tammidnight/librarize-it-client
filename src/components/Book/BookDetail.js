@@ -4,10 +4,22 @@ import FooterNavigation from "../FooterNavigation";
 import { API_URL } from "../../config";
 import "./Book.css";
 import { useNavigate, useParams } from "react-router";
-import { Backdrop, Box, Button, Paper, Rating } from "@mui/material";
+import {
+  Autocomplete,
+  Backdrop,
+  Box,
+  Button,
+  Paper,
+  Rating,
+  TextField,
+} from "@mui/material";
 import LoadingScreen from "../Loading/LoadingScreen";
 import { LibraryContext } from "../../context/library.context";
 import Review from "./Review";
+import { Link } from "react-router-dom";
+import EditAuthor from "./EditAuthor";
+
+const statusOptions = ["Not started", "In progress", "Abandoned", "Completed"];
 
 function BookDetail() {
   const { oneLibrary, setOneLibrary } = useContext(LibraryContext);
@@ -16,6 +28,8 @@ function BookDetail() {
   const navigate = useNavigate();
   const [value, setValue] = useState(null);
   const [reviewValue, setReviewValue] = useState(null);
+  const [statusValue, setStatusValue] = useState(null);
+  const [authorValue, setAuthorValue] = useState(null);
 
   useEffect(() => {
     const getData = async () => {
@@ -29,6 +43,10 @@ function BookDetail() {
         withCredentials: true,
       });
 
+      if (bookResponse.data.author) {
+        setAuthorValue(bookResponse.data.author);
+      }
+
       if (ratingResponse.data) {
         if (ratingResponse.data.review) {
           setReviewValue(ratingResponse.data.review.value);
@@ -37,6 +55,9 @@ function BookDetail() {
           setValue(ratingResponse.data.ratingValue);
         } else {
           setValue(0);
+        }
+        if (ratingResponse.data.status) {
+          setStatusValue(ratingResponse.data.status);
         }
       } else {
         setValue(0);
@@ -88,6 +109,28 @@ function BookDetail() {
     setReviewValue(event.target.review.value);
   };
 
+  const handleAuthor = async (event) => {
+    event.preventDefault();
+    await axios.patch(
+      `${API_URL}/book/${id}`,
+      { author: event.target.author.value },
+      {
+        withCredentials: true,
+      }
+    );
+    setAuthorValue(event.target.author.value);
+  };
+
+  const handleStatus = async (event, status) => {
+    await axios.post(
+      `${API_URL}/book/${id}/rating`,
+      { status },
+      {
+        withCredentials: true,
+      }
+    );
+  };
+
   if (book) {
     if (book.author) {
       if (book.author.length > 0) {
@@ -106,9 +149,38 @@ function BookDetail() {
     <>
       <div className="bookDetail">
         <img src={book.image} alt="" className="cover" />
-        <h4>{book.title}</h4>
-        {book.authors ? <h4>{book.authors}</h4> : <h4>test</h4>}
-        <h5>Status</h5>
+        <h4 className="heading">{book.title}</h4>
+        {book.authors ? (
+          <>
+            <h4 className="heading">{authorValue}</h4>
+            <EditAuthor
+              book={book}
+              authorValue={authorValue}
+              handleAuthor={handleAuthor}
+              text="Edit"
+            />
+          </>
+        ) : (
+          <EditAuthor
+            book={book}
+            authorValue={authorValue}
+            handleAuthor={handleAuthor}
+            text="Add"
+          />
+        )}
+        <Autocomplete
+          disablePortal
+          id="status"
+          options={statusOptions}
+          size="small"
+          sx={{ width: 200 }}
+          className="statusInput"
+          defaultValue={statusValue}
+          renderInput={(params) => <TextField {...params} label="Status" />}
+          onChange={(event, status) => {
+            handleStatus(event, status);
+          }}
+        />
         <h6>
           {book.isbn13 ? <>ISBN: {book.isbn13}</> : <>ISBN: {book.isbn10}</>}
           <br />
@@ -147,6 +219,10 @@ function BookDetail() {
           <Review book={book} text={"Write a"} handleReview={handleReview} />
         )}
       </div>
+
+      <Link to={`/library/${oneLibrary._id}`}>
+        <img src="/images/left-arrow.png" alt="back" className="back"></img>
+      </Link>
 
       <img
         src="/images/garbage.png"

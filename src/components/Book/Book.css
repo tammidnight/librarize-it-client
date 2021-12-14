@@ -5,11 +5,48 @@
   margin-left: auto;
 }
 
-.bookDetail {
-  margin: 2rem 2rem 5rem 2rem;
+.heading {
+  margin-top: 1rem;
+  margin-bottom: 0;
 }
 
-.MuiRating-root.booksRating {
+.bookDetail {
+  margin: 2rem 2rem 0 2rem;
+  padding-bottom: 0.5rem;
+  overflow: auto;
+  max-height: 70vh;
+}
+
+.back {
+  position: fixed;
+  bottom: 5rem;
+  left: 2rem;
+  width: 50px;
+}
+
+.delete {
+  position: fixed;
+  bottom: 5rem;
+  right: 2rem;
+  width: 30px;
+}
+
+#status-label,
+#status,
+#status-listbox {
+  font-family: "M PLUS Rounded 1c", sans-serif;
+}
+
+.bookDetail
+  > div.MuiAutocomplete-root.Mui-focused.MuiAutocomplete-hasPopupIcon.statusInput.css-yk43mc-MuiAutocomplete-root
+  > div
+  > div
+  > fieldset {
+  border-color: #1bae9f;
+}
+
+.MuiRating-root.booksRating,
+#status-label.Mui-focused {
   color: #1bae9f;
 }
 
@@ -23,10 +60,22 @@
   .cover {
     width: 20%;
   }
+  .back {
+    left: 15%;
+  }
+  .delete {
+    right: 15%;
+  }
 }
 
 @media (min-width: 1400px) {
   .cover {
     width: 15%;
+  }
+  .back {
+    left: 30%;
+  }
+  .delete {
+    right: 30%;
   }
 }
