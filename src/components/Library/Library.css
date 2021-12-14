@@ -1,3 +1,7 @@
+.libraryDiv {
+  max-height: 70vh;
+}
+
 .library {
   width: 35%;
   margin-top: 2rem;
@@ -5,14 +9,14 @@
 }
 
 .addlibrary {
-  position: absolute;
+  position: fixed;
   bottom: 5rem;
   right: 2rem;
   width: 75px;
 }
 
 .addBook {
-  position: absolute;
+  position: fixed;
   bottom: 5rem;
   right: 2rem;
   width: 50px;
@@ -35,7 +39,6 @@
   flex-wrap: wrap;
   justify-content: center;
   margin-top: 1rem;
-  margin-bottom: 5rem;
 }
 
 .card {

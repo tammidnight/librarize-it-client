@@ -321,61 +321,66 @@ function Profile() {
   }
 
   return (
-    <div>
-      {image ? (
-        <Avatar
-          alt="Avatar"
-          src={image}
-          sx={{ width: 125, height: 125 }}
-          className="avatar"
-        />
-      ) : (
-        <Avatar
-          alt="Avatar"
-          src="/images/user.png"
-          sx={{ width: 125, height: 125 }}
-          className="avatar"
-        />
-      )}
-      <div className="details">
-        <h3>Username: {username}</h3>
-        <h4>User since: {userSince}</h4>
-        {libraries.length === 1 ? (
-          <h4>1 library</h4>
+    <>
+      <div className="profile">
+        {image ? (
+          <Avatar
+            alt="Avatar"
+            src={image}
+            sx={{ width: 125, height: 125 }}
+            className="avatar"
+          />
         ) : (
-          <h4>{libraries.length} libraries</h4>
+          <Avatar
+            alt="Avatar"
+            src="/images/user.png"
+            sx={{ width: 125, height: 125 }}
+            className="avatar"
+          />
         )}
-      </div>
-      <Root>
-        <div {...getRootProps()} className="favoritesInput">
-          <Label {...getInputLabelProps()}>Favorite Genre/s</Label>
-          <InputWrapper ref={setAnchorEl} className={focused ? "focused" : ""}>
-            {value.map((option, index) => (
-              <StyledTag label={option} {...getTagProps({ index })} />
-            ))}
-
-            <input {...getInputProps()} />
-          </InputWrapper>
+        <div className="details">
+          <h3>Username: {username}</h3>
+          <h4>User since: {userSince}</h4>
+          {libraries.length === 1 ? (
+            <h4>1 library</h4>
+          ) : (
+            <h4>{libraries.length} libraries</h4>
+          )}
         </div>
-        {groupedOptions.length > 0 ? (
-          <div className="favoritesInput">
-            <Listbox {...getListboxProps()}>
-              {groupedOptions.map((option, index) => (
-                <li {...getOptionProps({ option, index })}>
-                  <span
-                    onClick={(event) => {
-                      getFavorite(event);
-                    }}
-                  >
-                    {option}
-                  </span>
-                  <CheckIcon fontSize="small" />
-                </li>
+        <Root>
+          <div {...getRootProps()} className="favoritesInput">
+            <Label {...getInputLabelProps()}>Favorite Genre/s</Label>
+            <InputWrapper
+              ref={setAnchorEl}
+              className={focused ? "focused" : ""}
+            >
+              {value.map((option, index) => (
+                <StyledTag label={option} {...getTagProps({ index })} />
               ))}
-            </Listbox>
+
+              <input {...getInputProps()} />
+            </InputWrapper>
           </div>
-        ) : null}
-      </Root>
+          {groupedOptions.length > 0 ? (
+            <div className="favoritesInput">
+              <Listbox {...getListboxProps()}>
+                {groupedOptions.map((option, index) => (
+                  <li {...getOptionProps({ option, index })}>
+                    <span
+                      onClick={(event) => {
+                        getFavorite(event);
+                      }}
+                    >
+                      {option}
+                    </span>
+                    <CheckIcon fontSize="small" />
+                  </li>
+                ))}
+              </Listbox>
+            </div>
+          ) : null}
+        </Root>
+      </div>
 
       <Link to="/settings">
         <img src="/images/pencil.png" alt="settings" className="settings"></img>
@@ -390,7 +395,7 @@ function Profile() {
       </Link>
 
       <FooterNavigation />
-    </div>
+    </>
   );
 }
 

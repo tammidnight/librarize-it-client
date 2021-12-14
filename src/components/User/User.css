@@ -1,3 +1,7 @@
+.profile {
+  max-height: 70vh;
+}
+
 .link {
   color: #1bae9f;
   text-decoration: none;
@@ -24,21 +28,21 @@
 }
 
 .addlibrary {
-  position: absolute;
+  position: fixed;
   bottom: 5rem;
   right: 2rem;
   width: 75px;
 }
 
 .settings {
-  position: absolute;
+  position: fixed;
   bottom: 5rem;
   left: 2rem;
   width: 50px;
 }
 
 .delete {
-  position: absolute;
+  position: fixed;
   bottom: 5rem;
   right: 2rem;
   width: 30px;

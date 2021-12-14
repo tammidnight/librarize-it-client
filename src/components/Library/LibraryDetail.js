@@ -86,47 +86,49 @@ function LibraryDetail() {
   }
 
   return (
-    <div>
-      <div className="libraryHeader">
-        <img src="/images/library.png" alt="library" width="75px" />
-        <div className="libraryDetails">
-          <h3>{oneLibrary.title}</h3>
-          <Link to={`/library/${id}/edit`}>
-            <img
-              src="/images/pencil.png"
-              alt="pencil"
-              width="15px"
-              height="15px"
-            />
-          </Link>
-        </div>
-      </div>
-      <Divider variant="middle" />
-      <div className="books">
-        {mappedBooks.map((elem) => {
-          return (
-            <Card
-              sx={{ width: 100, backgroundColor: "#dfe6ed" }}
-              className="card"
-              key={elem._id}
-            >
-              <CardMedia
-                component="img"
-                height="50"
-                image="/images/books.png"
-                alt="books"
+    <>
+      <div className="libraryDiv">
+        <div className="libraryHeader">
+          <img src="/images/library.png" alt="library" width="75px" />
+          <div className="libraryDetails">
+            <h3>{oneLibrary.title}</h3>
+            <Link to={`/library/${id}/edit`}>
+              <img
+                src="/images/pencil.png"
+                alt="pencil"
+                width="15px"
+                height="15px"
               />
-              <CardContent className="cardContent">
-                <Link
-                  to={`/library/${id}/book/${elem._id}`}
-                  className="cardLink bookLink"
-                >
-                  {elem.title} <br /> {elem.authors}
-                </Link>
-              </CardContent>
-            </Card>
-          );
-        })}
+            </Link>
+          </div>
+        </div>
+        <Divider variant="middle" />
+        <div className="books">
+          {mappedBooks.map((elem) => {
+            return (
+              <Card
+                sx={{ width: 100, backgroundColor: "#dfe6ed" }}
+                className="card"
+                key={elem._id}
+              >
+                <CardMedia
+                  component="img"
+                  height="50"
+                  image="/images/books.png"
+                  alt="books"
+                />
+                <CardContent className="cardContent">
+                  <Link
+                    to={`/library/${id}/book/${elem._id}`}
+                    className="cardLink bookLink"
+                  >
+                    {elem.title} <br /> {elem.authors}
+                  </Link>
+                </CardContent>
+              </Card>
+            );
+          })}
+        </div>
       </div>
       <img
         src="/images/hinzufugen.png"
@@ -190,7 +192,7 @@ function LibraryDetail() {
         </Box>
       </Backdrop>
       <FooterNavigation />
-    </div>
+    </>
   );
 }
 
