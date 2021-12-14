@@ -3,10 +3,10 @@ import { createContext, useState } from "react";
 const LibraryContext = createContext();
 
 function LibraryWrapper(props) {
-  const [library, setLibrary] = useState(null);
+  const [oneLibrary, setOneLibrary] = useState(null);
 
   return (
-    <LibraryContext.Provider value={{ library, setLibrary }}>
+    <LibraryContext.Provider value={{ oneLibrary, setOneLibrary }}>
       {props.children}
     </LibraryContext.Provider>
   );

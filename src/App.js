@@ -17,6 +17,7 @@ import CreateLibrary from "./components/Library/CreateLibrary";
 import LibraryDetail from "./components/Library/LibraryDetail";
 import LibraryOverview from "./components/Library/LibraryOverview";
 import EditLibrary from "./components/Library/EditLibrary";
+import BookDetail from "./components/Book/BookDetail";
 
 function App() {
   const { user, setUser } = useContext(UserContext);
@@ -107,6 +108,7 @@ function App() {
         />
         <Route path="/library/:id" element={<LibraryDetail />} />
         <Route path="/library/:id/edit" element={<EditLibrary />} />
+        <Route path="library/:libraryId/book/:id" element={<BookDetail />} />
       </Routes>
     </div>
   );

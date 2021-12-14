@@ -7,11 +7,10 @@ import {
   Typography,
 } from "@mui/material";
 import axios from "axios";
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { API_URL } from "../../config";
 import { FetchingUserContext } from "../../context/fetchingUser.context";
-import { LibraryContext } from "../../context/library.context";
 import { UserContext } from "../../context/user.context";
 import FooterNavigation from "../FooterNavigation";
 import LoadingScreen from "../Loading/LoadingScreen";
@@ -29,7 +28,7 @@ const theme = createTheme({
 
 function LibraryOverview() {
   const { user, setUser } = useContext(UserContext);
-  const { library, setLibrary } = useContext(LibraryContext);
+  const [library, setLibrary] = useState(null);
   const { fetchingUser } = useContext(FetchingUserContext);
 
   useEffect(() => {

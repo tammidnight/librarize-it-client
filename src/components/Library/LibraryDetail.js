@@ -1,8 +1,9 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router";
 import FooterNavigation from "../FooterNavigation";
 import { API_URL } from "../../config";
+import { LibraryContext } from "../../context/library.context";
 import LoadingScreen from "../Loading/LoadingScreen";
 import "./Library.css";
 import { Link } from "react-router-dom";
@@ -16,6 +17,7 @@ import {
   TextField,
   createTheme,
   ThemeProvider,
+  Divider,
 } from "@mui/material";
 
 const theme = createTheme({
@@ -31,7 +33,7 @@ const theme = createTheme({
 function LibraryDetail() {
   const { id } = useParams();
   const navigate = useNavigate();
-  const [oneLibrary, setOnelIbrary] = useState(null);
+  const { oneLibrary, setOneLibrary } = useContext(LibraryContext);
   const [books, setBooks] = useState(null);
   let mappedBooks = "";
 
@@ -40,7 +42,7 @@ function LibraryDetail() {
       let libraryResponse = await axios.get(`${API_URL}/library/${id}`, {
         withCredentials: true,
       });
-      setOnelIbrary(libraryResponse.data);
+      setOneLibrary(libraryResponse.data);
       setBooks(libraryResponse.data.books);
     };
     getData();
@@ -63,13 +65,17 @@ function LibraryDetail() {
     let bookResponse = await axios.post(`${API_URL}/add-book`, newBook, {
       withCredentials: true,
     });
-    navigate(`/book/${bookResponse.data._id}`);
+    navigate(`/library/${id}/book/${bookResponse.data._id}`);
   };
 
   if (books) {
     mappedBooks = books.map((elem) => {
-      if (elem.author.length > 0) {
-        elem.authors = elem.author.join(", ");
+      if (elem.author) {
+        if (elem.author.length > 0) {
+          elem.authors = elem.author.join(", ");
+        } else {
+          elem.authors = elem.author;
+        }
       }
       return elem;
     });
@@ -95,13 +101,7 @@ function LibraryDetail() {
           </Link>
         </div>
       </div>
-      <hr
-        height="1px"
-        borderwidth="0"
-        color="#6e6e6e"
-        backgroundcolor="#6e6e6e"
-        width="90%"
-      />
+      <Divider variant="middle" />
       <div className="books">
         {mappedBooks.map((elem) => {
           return (
@@ -117,7 +117,10 @@ function LibraryDetail() {
                 alt="books"
               />
               <CardContent className="cardContent">
-                <Link to={`/book/${elem._id}`} className="cardLink bookLink">
+                <Link
+                  to={`/library/${id}/book/${elem._id}`}
+                  className="cardLink bookLink"
+                >
                   {elem.title} <br /> {elem.authors}
                 </Link>
               </CardContent>

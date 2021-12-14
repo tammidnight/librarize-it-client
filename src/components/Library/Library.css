@@ -60,6 +60,7 @@
   margin-left: auto;
   margin-right: auto;
   margin-top: 2rem;
+  margin-bottom: 0.2rem;
 }
 
 .libraryDetails {
@@ -74,11 +75,8 @@
 .bookLink {
   font-size: 12px;
   padding: 0;
+  text-decoration: underline;
 }
-
-/*  @media (min-width: 400px) {
-   
-  } */
 
 @media (min-width: 900px) {
   .addlibrary,
