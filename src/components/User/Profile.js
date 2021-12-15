@@ -346,40 +346,41 @@ function Profile() {
           ) : (
             <h4>{libraries.length} libraries</h4>
           )}
-        </div>
-        <Root>
-          <div {...getRootProps()} className="favoritesInput">
-            <Label {...getInputLabelProps()}>Favorite Genre/s</Label>
-            <InputWrapper
-              ref={setAnchorEl}
-              className={focused ? "focused" : ""}
-            >
-              {value.map((option, index) => (
-                <StyledTag label={option} {...getTagProps({ index })} />
-              ))}
 
-              <input {...getInputProps()} />
-            </InputWrapper>
-          </div>
-          {groupedOptions.length > 0 ? (
-            <div className="favoritesInput">
-              <Listbox {...getListboxProps()}>
-                {groupedOptions.map((option, index) => (
-                  <li {...getOptionProps({ option, index })}>
-                    <span
-                      onClick={(event) => {
-                        getFavorite(event);
-                      }}
-                    >
-                      {option}
-                    </span>
-                    <CheckIcon fontSize="small" />
-                  </li>
+          <Root>
+            <div {...getRootProps()} className="favoritesInput">
+              <Label {...getInputLabelProps()}>Favorite Genre/s</Label>
+              <InputWrapper
+                ref={setAnchorEl}
+                className={focused ? "focused" : ""}
+              >
+                {value.map((option, index) => (
+                  <StyledTag label={option} {...getTagProps({ index })} />
                 ))}
-              </Listbox>
+
+                <input {...getInputProps()} />
+              </InputWrapper>
             </div>
-          ) : null}
-        </Root>
+            {groupedOptions.length > 0 ? (
+              <div className="favoritesInput">
+                <Listbox {...getListboxProps()}>
+                  {groupedOptions.map((option, index) => (
+                    <li {...getOptionProps({ option, index })}>
+                      <span
+                        onClick={(event) => {
+                          getFavorite(event);
+                        }}
+                      >
+                        {option}
+                      </span>
+                      <CheckIcon fontSize="small" />
+                    </li>
+                  ))}
+                </Listbox>
+              </div>
+            ) : null}
+          </Root>
+        </div>
       </div>
 
       <Link to="/settings">

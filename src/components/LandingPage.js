@@ -15,7 +15,7 @@ const theme = createTheme({
 });
 
 function LandingPage() {
-  const { user, setUser } = useContext(UserContext);
+  const { user } = useContext(UserContext);
   const navigate = useNavigate();
 
   useEffect(() => {

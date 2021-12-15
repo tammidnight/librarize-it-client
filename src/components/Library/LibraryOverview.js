@@ -27,7 +27,7 @@ const theme = createTheme({
 });
 
 function LibraryOverview() {
-  const { user, setUser } = useContext(UserContext);
+  const { user } = useContext(UserContext);
   const [library, setLibrary] = useState(null);
   const { fetchingUser } = useContext(FetchingUserContext);
 

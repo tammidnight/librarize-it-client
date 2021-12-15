@@ -90,10 +90,14 @@ function LibraryDetail() {
       isbn: event.target.isbn.value,
       library: id,
     };
-    let bookResponse = await axios.post(`${API_URL}/add-book`, newBook, {
-      withCredentials: true,
-    });
-    navigate(`/library/${id}/book/${bookResponse.data._id}`);
+    try {
+      let bookResponse = await axios.post(`${API_URL}/add-book`, newBook, {
+        withCredentials: true,
+      });
+      navigate(`/library/${id}/book/${bookResponse.data._id}`);
+    } catch (err) {
+      alert("ISBN not found");
+    }
   };
 
   const handleSearch = (event) => {
@@ -152,7 +156,7 @@ function LibraryDetail() {
                 <CardMedia
                   component="img"
                   height="50"
-                  image="/images/books.png"
+                  image={elem.image}
                   alt="books"
                 />
                 <CardContent className="cardContent">

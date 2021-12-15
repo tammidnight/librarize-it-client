@@ -9,6 +9,8 @@ import {
   DialogActions,
   Box,
   Backdrop,
+  FormControlLabel,
+  Checkbox,
 } from "@mui/material";
 import React, { useState } from "react";
 
@@ -61,6 +63,12 @@ function Review(props) {
               multiline
               defaultValue={props.reviewValue}
             />
+            <FormControlLabel
+                control={<Checkbox />}
+                label="Make review public"
+                name="publicReview"
+                id="publicReview"
+              />
           </DialogContent>
           <DialogActions>
             <Button type="submit" onClick={handleClickClose}>

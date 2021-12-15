@@ -101,7 +101,10 @@ function BookDetail() {
     event.preventDefault();
     await axios.post(
       `${API_URL}/book/${id}/rating`,
-      { review: event.target.review.value },
+      {
+        review: event.target.review.value,
+        publicReview: event.target.publicReview.checked,
+      },
       {
         withCredentials: true,
       }
@@ -204,7 +207,7 @@ function BookDetail() {
           <>
             <Paper
               elevation={3}
-              sx={{ backgroundColor: "#dfe6ed", width: "auto" }}
+              sx={{ backgroundColor: "#dfe6ed", width: "70%" }}
               className="paper"
             >
               {reviewValue}

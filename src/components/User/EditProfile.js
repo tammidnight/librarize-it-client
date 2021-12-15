@@ -116,101 +116,103 @@ function EditProfile() {
   return (
     <>
       <ThemeProvider theme={theme}>
-        <Container component="main" maxWidth="xs">
-          <CssBaseline />
-          <Box
-            sx={{
-              marginTop: 4,
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-            }}
-          >
-            <Typography component="h1" variant="h6" align="center">
-              Edit your personal information
-            </Typography>
+        <div className="profile">
+          <Container component="main" maxWidth="xs">
+            <CssBaseline />
             <Box
-              component="form"
-              onSubmit={handleEdit}
-              noValidate
-              sx={{ mt: 1 }}
+              sx={{
+                marginTop: 4,
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
             >
-              {image ? (
-                <Avatar
-                  alt="Avatar"
-                  src={image}
-                  sx={{ width: 125, height: 125 }}
-                  className="editAvatar"
-                />
-              ) : (
-                <Avatar
-                  alt="Avatar"
-                  src="/images/user.png"
-                  sx={{ width: 125, height: 125 }}
-                  className="editAvatar"
-                />
-              )}
-              <TextField
-                margin="normal"
-                fullWidth
-                id="image"
-                name="image"
-                type="file"
-              />
-              <TextField
-                margin="normal"
-                fullWidth
-                id="username"
-                label="Username"
-                name="username"
-                autoFocus
-                helperText={usernameError ? usernameError : ""}
-                error={usernameError ? true : false}
-              />
-              <TextField
-                margin="normal"
-                fullWidth
-                id="email"
-                label="Email Address"
-                name="email"
-                autoComplete="email"
-                helperText={emailError ? emailError : ""}
-                error={emailError ? true : false}
-              />
-              <TextField
-                margin="normal"
-                required
-                fullWidth
-                name="password"
-                label="Password"
-                type="password"
-                id="password"
-                autoComplete="current-password"
-                helperText={passwordError ? passwordError : ""}
-                error={passwordError ? true : false}
-              />
-              <TextField
-                margin="normal"
-                fullWidth
-                name="newPassword"
-                label="New Password"
-                type="password"
-                id="newPassword"
-                autoComplete="current-password"
-                helperText={passwordError ? passwordError : ""}
-                error={passwordError ? true : false}
-              />
-              <Button
-                type="submit"
-                fullWidth
-                variant="contained"
-                sx={{ mt: 3, mb: 2, mr: "35%", ml: "35%", width: "30%" }}
+              <Typography component="h1" variant="h6" align="center">
+                Edit your personal information
+              </Typography>
+              <Box
+                component="form"
+                onSubmit={handleEdit}
+                noValidate
+                sx={{ mt: 1 }}
               >
-                Submit
-              </Button>
+                {image ? (
+                  <Avatar
+                    alt="Avatar"
+                    src={image}
+                    sx={{ width: 125, height: 125 }}
+                    className="editAvatar"
+                  />
+                ) : (
+                  <Avatar
+                    alt="Avatar"
+                    src="/images/user.png"
+                    sx={{ width: 125, height: 125 }}
+                    className="editAvatar"
+                  />
+                )}
+                <TextField
+                  margin="normal"
+                  fullWidth
+                  id="image"
+                  name="image"
+                  type="file"
+                />
+                <TextField
+                  margin="normal"
+                  fullWidth
+                  id="username"
+                  label="Username"
+                  name="username"
+                  autoFocus
+                  helperText={usernameError ? usernameError : ""}
+                  error={usernameError ? true : false}
+                />
+                <TextField
+                  margin="normal"
+                  fullWidth
+                  id="email"
+                  label="Email Address"
+                  name="email"
+                  autoComplete="email"
+                  helperText={emailError ? emailError : ""}
+                  error={emailError ? true : false}
+                />
+                <TextField
+                  margin="normal"
+                  required
+                  fullWidth
+                  name="password"
+                  label="Password"
+                  type="password"
+                  id="password"
+                  autoComplete="current-password"
+                  helperText={passwordError ? passwordError : ""}
+                  error={passwordError ? true : false}
+                />
+                <TextField
+                  margin="normal"
+                  fullWidth
+                  name="newPassword"
+                  label="New Password"
+                  type="password"
+                  id="newPassword"
+                  autoComplete="current-password"
+                  helperText={passwordError ? passwordError : ""}
+                  error={passwordError ? true : false}
+                />
+                <Button
+                  type="submit"
+                  fullWidth
+                  variant="contained"
+                  sx={{ mt: 3, mb: 2, mr: "35%", ml: "35%", width: "30%" }}
+                >
+                  Submit
+                </Button>
+              </Box>
             </Box>
-          </Box>
-        </Container>
+          </Container>
+        </div>
         <img
           src="/images/garbage.png"
           alt=""
