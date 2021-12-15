@@ -31,6 +31,14 @@
   width: 30px;
 }
 
+.reviewDelete {
+  width: 15px;
+}
+
+.MuiDialogActions-root.MuiDialogActions-spacing.css-hlj6pa-MuiDialogActions-root {
+  padding-right: 24px;
+}
+
 #status-label,
 #status,
 #status-listbox {

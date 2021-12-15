@@ -34,7 +34,8 @@
   color: #1bae9f;
 }
 
-.cardDiv {
+.cardDiv,
+.books {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -69,10 +70,6 @@
 .libraryDetails {
   margin-left: 1rem;
   align-items: center;
-}
-
-.books {
-  margin-bottom: 5rem;
 }
 
 .bookLink {

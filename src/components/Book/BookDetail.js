@@ -109,6 +109,17 @@ function BookDetail() {
     setReviewValue(event.target.review.value);
   };
 
+  const handleReviewDelete = async () => {
+    await axios.post(
+      `${API_URL}/book/${id}/review`,
+      {},
+      {
+        withCredentials: true,
+      }
+    );
+    setReviewValue(null);
+  };
+
   const handleAuthor = async (event) => {
     event.preventDefault();
     await axios.patch(
@@ -150,24 +161,14 @@ function BookDetail() {
       <div className="bookDetail">
         <img src={book.image} alt="" className="cover" />
         <h4 className="heading">{book.title}</h4>
-        {book.authors ? (
-          <>
-            <h4 className="heading">{authorValue}</h4>
-            <EditAuthor
-              book={book}
-              authorValue={authorValue}
-              handleAuthor={handleAuthor}
-              text="Edit"
-            />
-          </>
-        ) : (
-          <EditAuthor
-            book={book}
-            authorValue={authorValue}
-            handleAuthor={handleAuthor}
-            text="Add"
-          />
-        )}
+
+        <h4 className="heading">{authorValue}</h4>
+        <EditAuthor
+          book={book}
+          authorValue={authorValue}
+          handleAuthor={handleAuthor}
+        />
+
         <Autocomplete
           disablePortal
           id="status"
@@ -190,7 +191,6 @@ function BookDetail() {
           <br />
           {book.description ? <>Description: {book.description}</> : ""}
         </h6>
-
         <Rating
           name="simple-controlled"
           value={value}
@@ -199,6 +199,7 @@ function BookDetail() {
           }}
           className="booksRating"
         />
+        <br />
         {reviewValue ? (
           <>
             <Paper
@@ -213,6 +214,8 @@ function BookDetail() {
               text={"Edit your"}
               handleReview={handleReview}
               reviewValue={reviewValue}
+              handleReviewDelete={handleReviewDelete}
+              isSet="true"
             />
           </>
         ) : (

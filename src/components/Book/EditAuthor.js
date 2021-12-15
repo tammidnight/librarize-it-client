@@ -38,14 +38,12 @@ function EditAuthor(props) {
         size="small"
         sx={{ fontSize: "10px", mb: "2rem" }}
       >
-        {props.text} author
+        Edit author
       </Button>
 
       <Dialog open={author} onClose={handleClickClose}>
         <Box component="form" onSubmit={props.handleAuthor} noValidate>
-          <DialogTitle>
-            {props.text} the author for {props.book.title}
-          </DialogTitle>
+          <DialogTitle>Edit the author for {props.book.title}</DialogTitle>
           <DialogContent>
             <TextField
               autoFocus

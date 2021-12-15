@@ -107,7 +107,7 @@ function LibraryDetail() {
           {mappedBooks.map((elem) => {
             return (
               <Card
-                sx={{ width: 100, backgroundColor: "#dfe6ed" }}
+                sx={{ width: 120, backgroundColor: "#dfe6ed" }}
                 className="card"
                 key={elem._id}
               >
@@ -164,6 +164,10 @@ function LibraryDetail() {
                 label="ISBN"
                 name="isbn"
                 autoFocus
+                sx={{
+                  backgroundColor: "rgba(223, 230, 237, 0.8)",
+                  borderRadius: "0.5rem",
+                }}
               />
               <Button
                 type="submit"
