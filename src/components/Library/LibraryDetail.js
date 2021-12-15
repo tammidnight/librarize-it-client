@@ -35,7 +35,7 @@ function LibraryDetail() {
   const navigate = useNavigate();
   const { oneLibrary, setOneLibrary } = useContext(LibraryContext);
   const [books, setBooks] = useState(null);
-  let mappedBooks = "";
+  const [booksCopy, setBooksCopy] = useState(null);
 
   useEffect(() => {
     const getData = async () => {
@@ -43,7 +43,35 @@ function LibraryDetail() {
         withCredentials: true,
       });
       setOneLibrary(libraryResponse.data);
-      setBooks(libraryResponse.data.books);
+
+      let mapping = libraryResponse.data.books;
+
+      let mappedBooks = mapping.map((elem) => {
+        if (elem.author) {
+          if (elem.author.length > 0) {
+            elem.authors = elem.author.join(", ");
+          } else {
+            elem.authors = elem.author;
+          }
+        }
+        return elem;
+      });
+
+      let sortedBooks = mappedBooks.sort((a, b) => {
+        let keyA = a.title;
+        let keyB = b.title;
+
+        if (keyA < keyB) {
+          return -1;
+        } else if (keyA > keyB) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+
+      setBooks(sortedBooks);
+      setBooksCopy(sortedBooks);
     };
     getData();
   }, []);
@@ -68,20 +96,15 @@ function LibraryDetail() {
     navigate(`/library/${id}/book/${bookResponse.data._id}`);
   };
 
-  if (books) {
-    mappedBooks = books.map((elem) => {
-      if (elem.author) {
-        if (elem.author.length > 0) {
-          elem.authors = elem.author.join(", ");
-        } else {
-          elem.authors = elem.author;
-        }
-      }
-      return elem;
+  const handleSearch = (event) => {
+    let word = event.target.value;
+    let mappedBooks = books.filter((elem) => {
+      return elem.title.toLowerCase().includes(word.toLowerCase());
     });
-  }
+    setBooksCopy(mappedBooks);
+  };
 
-  if (!oneLibrary || !books) {
+  if (!oneLibrary || !books || !booksCopy) {
     return <LoadingScreen />;
   }
 
@@ -103,8 +126,23 @@ function LibraryDetail() {
           </div>
         </div>
         <Divider variant="middle" />
+        <ThemeProvider theme={theme}>
+          <div className="textfieldCenter">
+            <TextField
+              margin="normal"
+              required
+              id="search"
+              label="Search for title"
+              name="search"
+              autoFocus
+              onChange={handleSearch}
+              size="small"
+              sx={{ width: "85vw" }}
+            />
+          </div>
+        </ThemeProvider>
         <div className="books">
-          {mappedBooks.map((elem) => {
+          {booksCopy.map((elem) => {
             return (
               <Card
                 sx={{ width: 120, backgroundColor: "#dfe6ed" }}

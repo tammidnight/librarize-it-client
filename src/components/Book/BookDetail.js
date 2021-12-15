@@ -110,7 +110,7 @@ function BookDetail() {
   };
 
   const handleReviewDelete = async () => {
-    await axios.post(
+    await axios.patch(
       `${API_URL}/book/${id}/review`,
       {},
       {

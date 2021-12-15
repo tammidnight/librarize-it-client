@@ -78,6 +78,16 @@
   text-decoration: underline;
 }
 
+.textfieldCenter {
+  display: flex;
+  justify-content: center;
+}
+
+.textfieldCenter > div {
+  margin-top: 1rem;
+  margin-bottom: 0;
+}
+
 @media (min-width: 900px) {
   .addlibrary,
   .addBook {
