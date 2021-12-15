@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import LoadingScreen from "./components/Loading/LoadingScreen";
 import { API_URL } from "./config";
@@ -18,6 +18,8 @@ import LibraryDetail from "./components/Library/LibraryDetail";
 import LibraryOverview from "./components/Library/LibraryOverview";
 import EditLibrary from "./components/Library/EditLibrary";
 import BookDetail from "./components/Book/BookDetail";
+import BookOverview from "./components/Book/BookOverview";
+import BookOverviewDetail from "./components/Book/BookOverviewDetail";
 
 function App() {
   const { setUser } = useContext(UserContext);
@@ -130,7 +132,9 @@ function App() {
         />
         <Route path="/library/:id" element={<LibraryDetail />} />
         <Route path="/library/:id/edit" element={<EditLibrary />} />
-        <Route path="library/:libraryId/book/:id" element={<BookDetail />} />
+        <Route path="/library/:libraryId/book/:id" element={<BookDetail />} />
+        <Route path="/book-overview" element={<BookOverview />} />
+        <Route path="/book/:id" element={<BookOverviewDetail />} />
       </Routes>
     </div>
   );

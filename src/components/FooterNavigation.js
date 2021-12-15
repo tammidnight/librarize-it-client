@@ -52,8 +52,13 @@ function FooterNavigation() {
       <Link to={`/profile/${user._id}/library-overview`}>
         <BottomNavigationAction
           icon={
-            <img src="/images/bookshelf.png" alt="" className="bottomNavImg" />
+            <img src="/images/library.png" alt="" className="bottomNavImg" />
           }
+        />
+      </Link>
+      <Link to={`/book-overview`}>
+        <BottomNavigationAction
+          icon={<img src="/images/books.png" alt="" className="bottomNavImg" />}
         />
       </Link>
       <Link to={`/profile/${user._id}`}>
