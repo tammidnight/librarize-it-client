@@ -20,8 +20,8 @@ import EditLibrary from "./components/Library/EditLibrary";
 import BookDetail from "./components/Book/BookDetail";
 
 function App() {
-  const { user, setUser } = useContext(UserContext);
-  const { error, setError } = useContext(ErrorContext);
+  const { setUser } = useContext(UserContext);
+  const { setError } = useContext(ErrorContext);
   const { fetchingUser, setFetchingUser } = useContext(FetchingUserContext);
   const navigate = useNavigate();
 
@@ -58,7 +58,19 @@ function App() {
       setError(null);
       navigate(`/profile/${response.data._id}`);
     } catch (err) {
-      setError(err.response.data.error);
+      if (err.response.data.error) {
+        if (err.response.data.error.username) {
+          setError({ username: err.response.data.error.username });
+        } else if (err.response.data.error.email) {
+          setError({ password: err.response.data.error.email });
+        }
+      } else if (err.response.data.username) {
+        setError({ username: err.response.data.username });
+      } else if (err.response.data.email) {
+        setError({ email: err.response.data.email });
+      } else if (err.response.data.password) {
+        setError({ password: err.response.data.password });
+      }
     }
   };
 
@@ -78,7 +90,17 @@ function App() {
       setError(null);
       navigate(`/profile/${response.data._id}`);
     } catch (err) {
-      setError(err.response.data.error);
+      if (err.response.data.error) {
+        if (err.response.data.error === "Username does not exist") {
+          setError({ username: "Username does not exist" });
+        } else if (err.response.data.error === "Passwords don't match") {
+          setError({ password: "Passwords don't match" });
+        }
+      } else if (err.response.data.username) {
+        setError({ username: err.response.data.username });
+      } else if (err.response.data.password) {
+        setError({ password: err.response.data.password });
+      }
     }
   };
 

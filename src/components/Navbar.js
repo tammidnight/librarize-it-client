@@ -17,6 +17,7 @@ import LogoutRoundedIcon from "@mui/icons-material/LogoutRounded";
 import { Link } from "react-router-dom";
 import "./Style.css";
 import { UserContext } from "../context/user.context";
+import { ErrorContext } from "../context/error.context";
 
 const theme = createTheme({
   palette: {
@@ -37,6 +38,7 @@ let settings = [
 function Navbar(props) {
   const { user } = React.useContext(UserContext);
   const [anchorElNav, setAnchorElNav] = React.useState(null);
+  const { setError } = React.useContext(ErrorContext);
   let hidden = "";
   let logout = "";
 
@@ -51,6 +53,7 @@ function Navbar(props) {
 
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
+    setError(null);
   };
 
   return (

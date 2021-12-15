@@ -9,7 +9,7 @@ import {
   Grid,
   createTheme,
 } from "@mui/material";
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { ErrorContext } from "../../context/error.context";
 import "./User.css";
@@ -26,16 +26,18 @@ const theme = createTheme({
 
 function LogIn(props) {
   const { error } = useContext(ErrorContext);
-  let username = null;
-  let password = null;
+  const [usernameError, setUsernameError] = useState(null);
+  const [passwordError, setPasswordError] = useState(null);
 
-  if (error) {
-    if (error.username) {
-      username = error.username;
-    } else if (error.password) {
-      password = error.password;
+  useEffect(() => {
+    if (error) {
+      if (error.username) {
+        setUsernameError(error.username);
+      } else if (error.password) {
+        setPasswordError(error.password);
+      }
     }
-  }
+  }, [error]);
 
   return (
     <ThemeProvider theme={theme}>
@@ -70,8 +72,8 @@ function LogIn(props) {
               name="username"
               autoComplete="username"
               autoFocus
-              helperText={username ? username : ""}
-              error={username ? true : false}
+              helperText={usernameError ? usernameError : ""}
+              error={usernameError ? true : false}
             />
             <TextField
               margin="normal"
@@ -82,8 +84,8 @@ function LogIn(props) {
               type="password"
               id="password"
               autoComplete="current-password"
-              helperText={password ? password : ""}
-              error={password ? true : false}
+              helperText={passwordError ? passwordError : ""}
+              error={passwordError ? true : false}
             />
             <Button
               type="submit"

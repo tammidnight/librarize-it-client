@@ -9,7 +9,7 @@ import {
   Grid,
   createTheme,
 } from "@mui/material";
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { ErrorContext } from "../../context/error.context";
 import "./User.css";
@@ -26,19 +26,21 @@ const theme = createTheme({
 
 function SignUp(props) {
   const { error } = useContext(ErrorContext);
-  let username = null;
-  let email = null;
-  let password = null;
+  const [usernameError, setUsernameError] = useState(null);
+  const [emailError, setEmailError] = useState(null);
+  const [passwordError, setPasswordError] = useState(null);
 
-  if (error) {
-    if (error.username) {
-      username = error.username;
-    } else if (error.email) {
-      email = error.email;
-    } else if (error.password) {
-      password = error.password;
+  useEffect(() => {
+    if (error) {
+      if (error.username) {
+        setUsernameError(error.username);
+      } else if (error.email) {
+        setEmailError(error.email);
+      } else if (error.password) {
+        setPasswordError(error.password);
+      }
     }
-  }
+  }, [error]);
 
   return (
     <ThemeProvider theme={theme}>
@@ -70,8 +72,8 @@ function SignUp(props) {
               label="Username"
               name="username"
               autoFocus
-              helperText={username ? username : ""}
-              error={username ? true : false}
+              helperText={usernameError ? usernameError : ""}
+              error={usernameError ? true : false}
             />
             <TextField
               margin="normal"
@@ -81,8 +83,8 @@ function SignUp(props) {
               label="Email Address"
               name="email"
               autoComplete="email"
-              helperText={email ? email : ""}
-              error={email ? true : false}
+              helperText={emailError ? emailError : ""}
+              error={emailError ? true : false}
             />
             <TextField
               margin="normal"
@@ -93,8 +95,8 @@ function SignUp(props) {
               type="password"
               id="password"
               autoComplete="current-password"
-              helperText={password ? password : ""}
-              error={password ? true : false}
+              helperText={passwordError ? passwordError : ""}
+              error={passwordError ? true : false}
             />
             <TextField
               margin="normal"
@@ -105,8 +107,8 @@ function SignUp(props) {
               type="password"
               id="confirmPassword"
               autoComplete="current-password"
-              helperText={password ? password : ""}
-              error={password ? true : false}
+              helperText={passwordError ? passwordError : ""}
+              error={passwordError ? true : false}
             />
             <Button
               type="submit"
