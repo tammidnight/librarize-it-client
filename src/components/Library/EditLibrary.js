@@ -53,7 +53,7 @@ function EditLibrary() {
       let updatedLibrary = {
         title: event.target.title.value,
         description: event.target.description.value,
-        publicLibrary: event.target.publicLibrary.checked,
+        /*    publicLibrary: event.target.publicLibrary.checked, */
       };
 
       let response = await axios.patch(
@@ -123,12 +123,12 @@ function EditLibrary() {
                 label="Description"
                 multiline
               />
-              <FormControlLabel
+              {/*    <FormControlLabel
                 control={<Checkbox />}
                 label="Make library public"
                 name="publicLibrary"
                 id="publicLibrary"
-              />
+              /> */}
               <Button
                 type="submit"
                 fullWidth

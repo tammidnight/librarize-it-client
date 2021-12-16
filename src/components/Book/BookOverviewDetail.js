@@ -45,8 +45,8 @@ function BookOverviewDetail() {
   const { user } = useContext(UserContext);
   const [library, setLibrary] = useState([]);
   const [reviews, setReviews] = useState([]);
-  const [rating, setRating] = useState(null);
-  const [book, setBook] = useState(null);
+  const [rating, setRating] = useState(0);
+  const [book, setBook] = useState([]);
   const { id } = useParams();
 
   useEffect(() => {
@@ -90,7 +90,7 @@ function BookOverviewDetail() {
             } else if (!ratingResponse.data[0].review.publicReview) {
               ratingResponse.data[0].review.user = "Anonymous";
             }
-            setReviews(ratingResponse.data[0].review);
+            setReviews([ratingResponse.data[0].review]);
           }
         } else {
           let arr = [];
