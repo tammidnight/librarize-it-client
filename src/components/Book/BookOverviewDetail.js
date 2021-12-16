@@ -158,7 +158,7 @@ function BookOverviewDetail() {
         <img src={book.image} alt="" className="cover" />
         <h4 className="heading">{book.title}</h4>
         <h4 className="heading">{book.authors}</h4>
-        <h6>
+        <h5>
           {book.isbn13 ? <>ISBN: {book.isbn13}</> : <>ISBN: {book.isbn10}</>}
           <br />
           Pages: {book.pages}
@@ -166,7 +166,7 @@ function BookOverviewDetail() {
           Published: {book.published}
           <br />
           {book.description ? <>Description: {book.description}</> : ""}
-        </h6>
+        </h5>
         <Rating
           name="simple-controlled"
           value={rating}

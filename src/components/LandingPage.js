@@ -1,3 +1,4 @@
+import { GitHub, LinkedIn } from "@mui/icons-material";
 import { createTheme, Button, ThemeProvider } from "@mui/material";
 import React, { useContext, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
@@ -64,7 +65,38 @@ function LandingPage() {
       </ThemeProvider>
       <div className="about">
         <h4>About librarize it</h4>
-        <p>Lorem ipsum blablabla</p>
+        <p>
+          Librarize it is a place for all booklovers to sort and categorise
+          their books. You can create as many libraries as you want and add
+          books to them.
+        </p>
+        <p>
+          Books can be given a personal status (did you already read it or did
+          you just started with it), they can also be rated and reviewed. Browse
+          through all rated books, read the reviews of other users and get
+          inspired.
+        </p>
+        <h4>About me</h4>
+        <p>
+          My name is Tamara and I just love reading. I wanted to create a place
+          for all bookslovers to have a full overview of their books. Fell free
+          to tell me what you think about it.
+          <br />
+          <a
+            href="https://github.com/tammidnight/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <GitHub sx={{ color: "#1bae9f" }} />
+          </a>
+          <a
+            href="https://https://www.linkedin.com/in/tamara-rott/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <LinkedIn sx={{ color: "#1bae9f" }} />
+          </a>
+        </p>
       </div>
     </div>
   );

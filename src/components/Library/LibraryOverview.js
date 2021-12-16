@@ -1,11 +1,4 @@
-import {
-  Card,
-  CardContent,
-  CardMedia,
-  createTheme,
-  ThemeProvider,
-  Typography,
-} from "@mui/material";
+import { createTheme, ThemeProvider } from "@mui/material";
 import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";

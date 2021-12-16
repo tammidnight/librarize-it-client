@@ -185,7 +185,7 @@ function BookDetail() {
             handleStatus(event, status);
           }}
         />
-        <h6>
+        <h5>
           {book.isbn13 ? <>ISBN: {book.isbn13}</> : <>ISBN: {book.isbn10}</>}
           <br />
           Pages: {book.pages}
@@ -193,7 +193,7 @@ function BookDetail() {
           Published: {book.published}
           <br />
           {book.description ? <>Description: {book.description}</> : ""}
-        </h6>
+        </h5>
         <Rating
           name="simple-controlled"
           value={value}

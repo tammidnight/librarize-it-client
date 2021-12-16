@@ -9,9 +9,6 @@ import LoadingScreen from "../Loading/LoadingScreen";
 import "./Library.css";
 import { Link } from "react-router-dom";
 import {
-  Card,
-  CardContent,
-  CardMedia,
   Box,
   Backdrop,
   Button,

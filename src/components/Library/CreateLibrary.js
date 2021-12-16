@@ -7,8 +7,8 @@ import {
   Typography,
   TextField,
   Button,
-  FormControlLabel,
-  Checkbox,
+  /*  FormControlLabel,
+  Checkbox, */
 } from "@mui/material";
 import React, { useContext } from "react";
 import { FetchingUserContext } from "../../context/fetchingUser.context";
