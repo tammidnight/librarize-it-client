@@ -71,15 +71,15 @@ function LandingPage() {
           books to them.
         </p>
         <p>
-          Books can be given a personal status (did you already read it or did
-          you just started with it), they can also be rated and reviewed. Browse
-          through all rated books, read the reviews of other users and get
-          inspired.
+          Books can be given a personal status (have you already read it or did
+          you just start with it etc.), they can also be rated and reviewed.
+          Browse through all rated books, read the reviews of other users and
+          get inspired.
         </p>
         <h4>About me</h4>
         <p>
           My name is Tamara and I just love reading. I wanted to create a place
-          for all bookslovers to have a full overview of their books. Fell free
+          for all bookslovers to have a full overview of their books. Feel free
           to tell me what you think about it.
           <br />
           <a
