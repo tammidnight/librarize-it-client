@@ -20,6 +20,8 @@ import EditLibrary from "./components/Library/EditLibrary";
 import BookDetail from "./components/Book/BookDetail";
 import BookOverview from "./components/Book/BookOverview";
 import BookOverviewDetail from "./components/Book/BookOverviewDetail";
+import NotFound from "./components/Error/NotFound";
+import InternalError from "./components/Error/InternalError";
 
 function App() {
   const { setUser } = useContext(UserContext);
@@ -135,6 +137,8 @@ function App() {
         <Route path="/library/:libraryId/book/:id" element={<BookDetail />} />
         <Route path="/book-overview" element={<BookOverview />} />
         <Route path="/book/:id" element={<BookOverviewDetail />} />
+        <Route path="/500" element={<InternalError />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </div>
   );

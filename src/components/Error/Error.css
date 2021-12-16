@@ -1,0 +1,40 @@
+.error {
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.errorLink {
+  color: #1bae9f;
+}
+
+.errorImg {
+  width: 70%;
+  margin-top: 5rem;
+  align-self: center;
+}
+
+.errorH {
+  margin-top: 5rem;
+}
+
+@media (min-width: 600px) {
+  .error {
+    width: 70%;
+  }
+  .errorImg {
+    width: 60%;
+  }
+}
+
+@media (min-width: 900px) {
+  .error {
+    width: 50%;
+  }
+  .errorImg {
+    width: 50%;
+  }
+}

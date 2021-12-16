@@ -124,7 +124,6 @@ const bookGenres = [
   "Crime",
   "Crafts/hobbies",
   "Cookbook",
-  "Diary",
   "Dictionary",
   "Drama",
   "Encyclopedia",
