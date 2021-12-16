@@ -3,6 +3,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router";
 import FooterNavigation from "../FooterNavigation";
 import { API_URL } from "../../config";
+import { UserContext } from "../../context/user.context";
 import { LibraryContext } from "../../context/library.context";
 import LoadingScreen from "../Loading/LoadingScreen";
 import "./Library.css";
@@ -19,6 +20,8 @@ import {
   ThemeProvider,
   Divider,
 } from "@mui/material";
+import LibraryDetailList from "./LibraryDetailList";
+import LibraryDetailGrid from "./LibraryDetailGrid";
 
 const theme = createTheme({
   palette: {
@@ -34,6 +37,7 @@ function LibraryDetail() {
   const { id } = useParams();
   const navigate = useNavigate();
   const { oneLibrary, setOneLibrary } = useContext(LibraryContext);
+  const { user, setUser } = useContext(UserContext);
   const [books, setBooks] = useState(null);
   const [booksCopy, setBooksCopy] = useState(null);
 
@@ -108,7 +112,16 @@ function LibraryDetail() {
     setBooksCopy(mappedBooks);
   };
 
-  if (!oneLibrary || !books || !booksCopy) {
+  const handleView = async () => {
+    let response = await axios.patch(
+      `${API_URL}/view`,
+      { grid: !user.grid },
+      { withCredentials: true }
+    );
+    setUser(response.data);
+  };
+
+  if (!oneLibrary || !books || !booksCopy || !user) {
     return <LoadingScreen />;
   }
 
@@ -128,6 +141,21 @@ function LibraryDetail() {
               />
             </Link>
           </div>
+          {user.grid ? (
+            <img
+              src="/images/list.png"
+              alt=""
+              className="gridListLibrary"
+              onClick={handleView}
+            />
+          ) : (
+            <img
+              src="/images/grid.png"
+              alt=""
+              className="gridListLibrary"
+              onClick={handleView}
+            />
+          )}
         </div>
         <Divider variant="middle" />
         <ThemeProvider theme={theme}>
@@ -146,30 +174,11 @@ function LibraryDetail() {
           </div>
         </ThemeProvider>
         <div className="books">
-          {booksCopy.map((elem) => {
-            return (
-              <Card
-                sx={{ width: 120, backgroundColor: "#dfe6ed" }}
-                className="card"
-                key={elem._id}
-              >
-                <CardMedia
-                  component="img"
-                  height="50"
-                  image={elem.image}
-                  alt="books"
-                />
-                <CardContent className="cardContent">
-                  <Link
-                    to={`/library/${id}/book/${elem._id}`}
-                    className="cardLink bookLink"
-                  >
-                    {elem.title} <br /> {elem.authors}
-                  </Link>
-                </CardContent>
-              </Card>
-            );
-          })}
+          {user.grid ? (
+            <LibraryDetailGrid booksCopy={booksCopy} id={id} />
+          ) : (
+            <LibraryDetailList booksCopy={booksCopy} id={id} />
+          )}
         </div>
       </div>
       <img

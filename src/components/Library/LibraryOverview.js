@@ -15,6 +15,8 @@ import { UserContext } from "../../context/user.context";
 import FooterNavigation from "../FooterNavigation";
 import LoadingScreen from "../Loading/LoadingScreen";
 import "./Library.css";
+import LibraryOverviewGrid from "./LibraryOverviewGrid";
+import LibraryOverviewList from "./LibraryOverviewList";
 
 const theme = createTheme({
   palette: {
@@ -27,7 +29,7 @@ const theme = createTheme({
 });
 
 function LibraryOverview() {
-  const { user } = useContext(UserContext);
+  const { user, setUser } = useContext(UserContext);
   const [library, setLibrary] = useState(null);
   const { fetchingUser } = useContext(FetchingUserContext);
 
@@ -46,6 +48,15 @@ function LibraryOverview() {
     getData();
   }, [user]);
 
+  const handleView = async () => {
+    let response = await axios.patch(
+      `${API_URL}/view`,
+      { grid: !user.grid },
+      { withCredentials: true }
+    );
+    setUser(response.data);
+  };
+
   if (fetchingUser || !user || !library) {
     return <LoadingScreen />;
   }
@@ -54,36 +65,30 @@ function LibraryOverview() {
     <>
       <ThemeProvider theme={theme}>
         <div className="libraryDiv">
-          <h2 className="header">Your libraries</h2>
+          <h2 className="header">
+            Your libraries{" "}
+            {user.grid ? (
+              <img
+                src="/images/list.png"
+                alt=""
+                className="gridListLibrary"
+                onClick={handleView}
+              />
+            ) : (
+              <img
+                src="/images/grid.png"
+                alt=""
+                className="gridListLibrary"
+                onClick={handleView}
+              />
+            )}
+          </h2>
           <div className="cardDiv">
-            {library.map((elem) => {
-              return (
-                <Card
-                  sx={{ width: 100, backgroundColor: "#dfe6ed" }}
-                  className="card"
-                  key={elem._id}
-                >
-                  <CardMedia
-                    component="img"
-                    height="75"
-                    image="/images/library.png"
-                    alt="library"
-                  />
-                  <CardContent className="cardContent">
-                    <Link to={`/library/${elem._id}`} className="cardLink">
-                      <Typography>{elem.title}</Typography>
-                    </Link>
-                    <Link to={`/library/${elem._id}/edit`}>
-                      <img
-                        src="/images/pencil.png"
-                        alt="settings"
-                        className="pencil"
-                      />
-                    </Link>
-                  </CardContent>
-                </Card>
-              );
-            })}
+            {user.grid ? (
+              <LibraryOverviewGrid library={library} />
+            ) : (
+              <LibraryOverviewList library={library} />
+            )}
           </div>
           <Link to="/create-library">
             <img

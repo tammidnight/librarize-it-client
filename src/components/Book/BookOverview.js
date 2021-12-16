@@ -1,12 +1,14 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import FooterNavigation from "../FooterNavigation";
 import { API_URL } from "../../config";
 import LoadingScreen from "../Loading/LoadingScreen";
-import { Card, CardContent, CardMedia } from "@mui/material";
-import { Link } from "react-router-dom";
+import { UserContext } from "../../context/user.context";
+import BookOverviewList from "./BookOverviewList";
+import BookOverviewGrid from "./BookOverviewGrid";
 
 function BookOverview() {
+  const { user, setUser } = useContext(UserContext);
   const [books, setBooks] = useState(null);
 
   useEffect(() => {
@@ -47,36 +49,47 @@ function BookOverview() {
     getData();
   }, []);
 
-  if (!books) {
+  const handleView = async () => {
+    let response = await axios.patch(
+      `${API_URL}/view`,
+      { grid: !user.grid },
+      { withCredentials: true }
+    );
+    setUser(response.data);
+  };
+
+  if (!books || !user) {
     return <LoadingScreen />;
   }
 
   return (
     <>
-      <div className="libraryDiv">
-        <h2 className="header">Top rated books</h2>
-        <div className="cardDiv">
-          {books.map((elem) => {
-            return (
-              <Card
-                sx={{ width: 120, backgroundColor: "#dfe6ed" }}
-                className="card"
-                key={elem._id}
-              >
-                <CardMedia
-                  component="img"
-                  height="50"
-                  image={elem.book[0].image}
-                  alt="cover"
-                />
-                <CardContent className="cardContent">
-                  <Link to={`/book/${elem._id}`} className="cardLink bookLink">
-                    {elem.book[0].title} <br /> {elem.book[0].authors}
-                  </Link>
-                </CardContent>
-              </Card>
-            );
-          })}
+      <div className="bookOverviewDiv">
+        <h2 className="bookHeader">
+          Top rated books{" "}
+          {user.grid ? (
+            <img
+              src="/images/list.png"
+              alt=""
+              className="gridList"
+              onClick={handleView}
+            />
+          ) : (
+            <img
+              src="/images/grid.png"
+              alt=""
+              className="gridList"
+              onClick={handleView}
+            />
+          )}
+        </h2>
+
+        <div className="bookDiv">
+          {user.grid ? (
+            <BookOverviewGrid books={books} />
+          ) : (
+            <BookOverviewList books={books} />
+          )}
         </div>
       </div>
       <FooterNavigation />
