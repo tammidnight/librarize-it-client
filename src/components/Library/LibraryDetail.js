@@ -128,7 +128,7 @@ function LibraryDetail() {
         <div className="libraryHeader">
           <img src="/images/library.png" alt="library" width="75px" />
           <div className="libraryDetails">
-            <h3>{oneLibrary.title}</h3>
+            <h3 className="title">{oneLibrary.title}</h3>
             <Link to={`/library/${id}/edit`}>
               <img
                 src="/images/pencil.png"

@@ -14,6 +14,14 @@
   align-self: center;
   margin-top: 0;
   margin-bottom: 0;
+  max-height: 75px;
+  overflow: auto;
+}
+
+.title {
+  align-self: center;
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
 .addlibrary {
