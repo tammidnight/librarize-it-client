@@ -64,14 +64,14 @@ function LibraryOverview() {
               <img
                 src="/images/list.png"
                 alt=""
-                className="gridListLibrary"
+                className="gridListLibraryOverview"
                 onClick={handleView}
               />
             ) : (
               <img
                 src="/images/grid.png"
                 alt=""
-                className="gridListLibrary"
+                className="gridListLibraryOverview"
                 onClick={handleView}
               />
             )}

@@ -138,6 +138,7 @@ function LibraryDetail() {
               />
             </Link>
           </div>
+          <h5 className="description">{oneLibrary.description}</h5>
           {user.grid ? (
             <img
               src="/images/list.png"

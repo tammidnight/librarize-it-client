@@ -11,7 +11,7 @@ import {
   Checkbox, */
   Backdrop,
 } from "@mui/material";
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { FetchingUserContext } from "../../context/fetchingUser.context";
 import { UserContext } from "../../context/user.context";
 import FooterNavigation from "../FooterNavigation";
@@ -21,6 +21,7 @@ import { API_URL } from "../../config";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router";
 import { ErrorContext } from "../../context/error.context";
+import { LibraryContext } from "../../context/library.context";
 
 const theme = createTheme({
   palette: {
@@ -36,8 +37,19 @@ function EditLibrary() {
   const { user, setUser } = useContext(UserContext);
   const { fetchingUser } = useContext(FetchingUserContext);
   const { error, setError } = useContext(ErrorContext);
+  const [library, setLibrary] = useState(null);
   const navigate = useNavigate();
   const { id } = useParams();
+
+  useEffect(() => {
+    const getData = async () => {
+      let libraryResponse = await axios.get(`${API_URL}/library/${id}`, {
+        withCredentials: true,
+      });
+      setLibrary(libraryResponse.data);
+    };
+    getData();
+  }, []);
 
   const [open, setOpen] = useState(false);
   const handleClose = () => {
@@ -63,7 +75,7 @@ function EditLibrary() {
           withCredentials: true,
         }
       );
-      setUser(response.data);
+      setUser(response.data.user);
       navigate(`/library/${response.data._id}`);
     } catch (err) {
       setError(err.response.data.error);
@@ -77,7 +89,7 @@ function EditLibrary() {
     navigate(`/profile/${user._id}/library-overview`);
   };
 
-  if (fetchingUser || !user) {
+  if (fetchingUser || !user || !library) {
     return <LoadingScreen />;
   }
 
@@ -112,6 +124,7 @@ function EditLibrary() {
                 id="title"
                 label="Title of your library"
                 name="title"
+                defaultValue={library.title}
                 autoFocus
                 helperText={error ? error : ""}
                 error={error ? true : false}
@@ -122,6 +135,7 @@ function EditLibrary() {
                 id="description"
                 label="Description"
                 multiline
+                defaultValue={library.description}
               />
               {/*    <FormControlLabel
                 control={<Checkbox />}

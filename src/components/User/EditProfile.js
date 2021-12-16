@@ -165,6 +165,7 @@ function EditProfile() {
                   label="Username"
                   name="username"
                   autoFocus
+                  defaultValue={user.username}
                   helperText={usernameError ? usernameError : ""}
                   error={usernameError ? true : false}
                 />
@@ -175,6 +176,7 @@ function EditProfile() {
                   label="Email Address"
                   name="email"
                   autoComplete="email"
+                  defaultValue={user.email}
                   helperText={emailError ? emailError : ""}
                   error={emailError ? true : false}
                 />
