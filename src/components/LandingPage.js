@@ -79,7 +79,7 @@ function LandingPage() {
         <h4>About me</h4>
         <p>
           My name is Tamara and I just love reading. I wanted to create a place
-          for all bookslovers to have a full overview of their books. Feel free
+          for all booklovers to have a full overview of their books. Feel free
           to tell me what you think about it.
           <br />
           <a
